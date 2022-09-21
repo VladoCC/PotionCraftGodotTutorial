@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://DrawCollision.gd" type="Script" id=1]
+[ext_resource path="res://PotionCollision.tscn" type="PackedScene" id=2]
+
+[node name="Potion" type="Area2D"]
+
+[node name="CollisionPolygon2D" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+color = Color( 0.0941176, 1, 1, 1 )

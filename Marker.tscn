@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://PotionCollision.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Marker.gd" type="Script" id=2]
+[ext_resource path="res://DrawCollision.gd" type="Script" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array(  )
+}
+
+[node name="Marker" type="Path2D"]
+curve = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotate = false
+loop = false
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="PathFollow2D"]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" parent="PathFollow2D/KinematicBody2D" instance=ExtResource( 1 )]
+script = ExtResource( 3 )

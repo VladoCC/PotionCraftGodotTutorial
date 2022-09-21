@@ -1,0 +1,143 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Preview.gd" type="Script" id=1]
+[ext_resource path="res://Map.gd" type="Script" id=2]
+[ext_resource path="res://Marker.tscn" type="PackedScene" id=3]
+[ext_resource path="res://blueprint-background.png" type="Texture" id=4]
+[ext_resource path="res://Potion.tscn" type="PackedScene" id=5]
+[ext_resource path="res://DrawCollision.gd" type="Script" id=6]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array(  )
+}
+
+[node name="Map" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 641.5, 362.25 )
+scale = Vector2( 1.73649, 1.64806 )
+texture = ExtResource( 4 )
+
+[node name="Potions" type="Node2D" parent="."]
+
+[node name="Potion" parent="Potions" instance=ExtResource( 5 )]
+position = Vector2( 946, 428 )
+
+[node name="Potion2" parent="Potions" instance=ExtResource( 5 )]
+position = Vector2( 791, 174 )
+
+[node name="Potion3" parent="Potions" instance=ExtResource( 5 )]
+position = Vector2( 288, 198 )
+
+[node name="Potion4" parent="Potions" instance=ExtResource( 5 )]
+position = Vector2( 586, 506 )
+
+[node name="Potion5" parent="Potions" instance=ExtResource( 5 )]
+position = Vector2( 279, 470 )
+
+[node name="Bones" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Bones"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bones/Area2D"]
+polygon = PoolVector2Array( 394, 134, 601, 123, 671, 182, 517, 282, 363, 263 )
+script = ExtResource( 6 )
+color = Color( 0, 0.105882, 0.466667, 1 )
+
+[node name="Area2D2" type="Area2D" parent="Bones"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bones/Area2D2"]
+polygon = PoolVector2Array( 748, 495, 673, 583, 752, 653, 994, 642, 952, 521, 1111, 507, 1219, 420, 1140, 325, 1130, 228, 1051, 171, 1016, 256, 1036, 385, 936, 486 )
+script = ExtResource( 6 )
+color = Color( 0, 0.105882, 0.466667, 1 )
+
+[node name="Marker" parent="." instance=ExtResource( 3 )]
+position = Vector2( 640, 360 )
+
+[node name="Preview" type="Path2D" parent="."]
+position = Vector2( 640, 360 )
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="Curve1" type="Button" parent="."]
+margin_left = 93.0
+margin_top = 649.0
+margin_right = 149.0
+margin_bottom = 669.0
+text = "Curve1"
+
+[node name="Curve2" type="Button" parent="."]
+margin_left = 223.0
+margin_top = 649.0
+margin_right = 279.0
+margin_bottom = 669.0
+text = "Curve2"
+
+[node name="Curve3" type="Button" parent="."]
+margin_left = 355.0
+margin_top = 651.0
+margin_right = 411.0
+margin_bottom = 671.0
+text = "Curve3"
+
+[node name="Move" type="Button" parent="."]
+margin_left = 619.0
+margin_top = 625.0
+margin_right = 675.0
+margin_bottom = 671.0
+text = "Move"
+
+[node name="Add" type="Button" parent="."]
+margin_left = 1007.0
+margin_top = 649.0
+margin_right = 1063.0
+margin_bottom = 669.0
+text = "Add"
+
+[node name="Extend" type="Button" parent="."]
+margin_left = 1139.0
+margin_top = 648.0
+margin_right = 1195.0
+margin_bottom = 668.0
+text = "Extend"
+
+[node name="Health" type="Label" parent="."]
+margin_left = 1106.0
+margin_top = 59.0
+margin_right = 1156.0
+margin_bottom = 73.0
+text = "Health: "
+
+[node name="HealthVal" type="Label" parent="."]
+margin_left = 1176.0
+margin_top = 59.0
+margin_right = 1226.0
+margin_bottom = 73.0
+text = "100 "
+align = 2
+
+[node name="Level" type="Label" parent="."]
+margin_left = 1106.0
+margin_top = 84.0
+margin_right = 1156.0
+margin_bottom = 98.0
+text = "Level: "
+
+[node name="LevelVal" type="Label" parent="."]
+margin_left = 1176.0
+margin_top = 84.0
+margin_right = 1226.0
+margin_bottom = 98.0
+text = "-"
+align = 2
+
+[connection signal="pressed" from="Curve1" to="." method="_on_Curve1_pressed"]
+[connection signal="pressed" from="Curve2" to="." method="_on_Curve2_pressed"]
+[connection signal="pressed" from="Curve3" to="." method="_on_Curve3_pressed"]
+[connection signal="button_down" from="Move" to="." method="_on_Move_button_down"]
+[connection signal="button_up" from="Move" to="." method="_on_Move_button_up"]
+[connection signal="pressed" from="Add" to="." method="_on_Add_pressed"]
+[connection signal="button_down" from="Extend" to="." method="_on_Extend_button_down"]
+[connection signal="button_up" from="Extend" to="." method="_on_Extend_button_up"]
